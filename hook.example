@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Modify or replace this file as necessary for local use and save in
+# this directory as "hook".
+#
+# Called by memwatch whenever the total memory exceeds the limit. It
+# gets one argument, which is the PID which is currently using the
+# most memory, belonging to the user who is cumulatively using the
+# most memory.
+
+/usr/bin/kill -9 $1
