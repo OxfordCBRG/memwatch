@@ -1,0 +1,9 @@
+Package: memwatch
+Version: 1.1-1
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: 
+Maintainer: Duncan Tooke <duncan.tooke@imm.ox.ac.uk>
+Description: 
+ memwatch allows a multi-user system to avoid thrashing by preventing user processes from consuming more than a set percentage of the system memory.
