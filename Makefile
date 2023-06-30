@@ -17,4 +17,4 @@ deb : prefix = ./memwatch_$(version)-$(release)/
 deb : all fake_install
 	sed -i 's/Version: .*/Version: $(version)-$(release)/' DEBIAN/control
 	cp -ar DEBIAN memwatch_$(version)-$(release)
-	dpkg-deb --build memwatch_$(version)-$(release)
+	dpkg-deb --build --root-owner-group memwatch_$(version)-$(release)
