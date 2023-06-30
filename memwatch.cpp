@@ -11,13 +11,6 @@
 
 using namespace std;
 
-const int SAMPLE_RATE_SECONDS = 2;
-const int MAX_SYSTEM_UID = 999; // Ignore all processes owned by UIDs <= MAX_SYSTEM_UID
-const int MAX_MEM_PERCENT = 90;
-const unsigned long long PAGE_SIZE_BYTES = sysconf(_SC_PAGESIZE);
-const unsigned long long MEM_SIZE_BYTES = sysconf(_SC_PHYS_PAGES) * PAGE_SIZE_BYTES;
-const unsigned long long MAX_MEM_BYTES = (MEM_SIZE_BYTES * MAX_MEM_PERCENT) / 100;
-
 struct UserStats
 {
     unsigned long long total_mem;
@@ -40,9 +33,16 @@ inline const vector<string> split_on_space(const string &path)
     return vector<string>((istream_iterator<string>(iss)),istream_iterator<string>());
 }
 
-int main()
+int main(int argc, char** argv)
 {
     
+    const int SAMPLE_RATE_SECONDS = 2;
+    const int MAX_SYSTEM_UID = 999; // Ignore all processes owned by UIDs <= MAX_SYSTEM_UID
+    const int MAX_MEM_PERCENT = (argc == 2 ? stoi(string(argv[1])) : 90);
+    const unsigned long long PAGE_SIZE_BYTES = sysconf(_SC_PAGESIZE);
+    const unsigned long long MEM_SIZE_BYTES = sysconf(_SC_PHYS_PAGES) * PAGE_SIZE_BYTES;
+    const unsigned long long MAX_MEM_BYTES = (MEM_SIZE_BYTES * MAX_MEM_PERCENT) / 100;
+
     cout << "INFO: PAGE_SIZE_BYTES\t" << PAGE_SIZE_BYTES << '\n';
     cout << "INFO: MEM_SIZE_BYTES\t" << MEM_SIZE_BYTES << '\n';
     cout << "INFO: MAX_MEM_PERCENT\t" << MAX_MEM_PERCENT << '\n';

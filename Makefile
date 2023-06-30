@@ -1,4 +1,4 @@
-version = 1.1
+version = 1.2
 release = 1
 all : memwatch
 memwatch : memwatch.cpp 
